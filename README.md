@@ -19,9 +19,15 @@ python -m pip install -r requirements.txt
 2. 启动
    - `python main.py`
 
+## 依赖工具
+- 需要系统已安装 `ffmpeg`（用于视频逐帧导出）
+- macOS 可用：`brew install ffmpeg`
+- 也可设置环境变量 `FFMPEG_PATH` 指向 `ffmpeg` 可执行文件
+
 ## 打包（macOS）
-- 运行 `./build.sh`
+- 运行 `./build.sh`（默认 onedir，启动更快）
 - 产物在 `dist/LabelAssist`
+- 如需单文件版本，运行 `./build_onefile.sh`
 
 ## 说明
 - 视频逐帧输出命名为 `img_000000.jpg` 格式。

@@ -17,7 +17,7 @@ python -m pip install pyinstaller
 
 pyinstaller \
   --name LabelAssist \
-  --onedir \
+  --onefile \
   --windowed \
   main.py
 

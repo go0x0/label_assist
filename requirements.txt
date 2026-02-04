@@ -1,2 +1,1 @@
 PySide6>=6.6.0
-opencv-python>=4.8.0
