@@ -334,14 +334,20 @@ class LabelmeWorker(QThread):
     def run(self):
         try:
             env = os.environ.copy()
+            env["PYTHONIOENCODING"] = "UTF-8"
             env["LANG"] = "zh_CN.UTF-8"
+            env["LANGUAGE"] = "zh_CN:zh"
             env["LC_ALL"] = "zh_CN.UTF-8"
-            env["LANGUAGE"] = "zh_CN.UTF-8"
+            env["LC_MESSAGES"] = "zh_CN.UTF-8"
+            env["LC_CTYPE"] = "zh_CN.UTF-8"
+            if "/usr/local/bin" not in env.get("PATH", ""):
+                env["PATH"] = f"/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:{env.get('PATH', '')}"
             subprocess.Popen(
                 [self.uvx_path, "labelme"],
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
                 env=env,
+                start_new_session=True,
             )
             self.started_ok.emit()
         except Exception as exc:
